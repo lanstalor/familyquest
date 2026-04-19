@@ -204,3 +204,9 @@ Palette key: `bg-900` (navy), `ink` (cream), `coin` (gold), `hp` (red), `quest-g
 - **Strict Progression**: Puzzles and Combat rooms MUST be solved/defeated to advance. Failure rotates the turn to the next hero to try again.
 - **Visuals**: Full 1024x1024 background support via `backgroundUrl`. Layout uses a "Cinematic Letterbox" format (max 60vh) to ensure zero cropping of artwork.
 - **Narrator**: Native transparent `gpt-image-1.5` assets for items and monsters.
+- **Puzzle Logic**: The Whispering Bridge uses **T, R, U, E** as the correct path (Word: TRUE).
+
+## Asset Conventions
+- **Characters**: Sliced from quadrants into `public/assets/characters/`.
+- **Items**: Generated via `gpt-image-1.5` with native alpha transparency into `public/assets/items/`.
+- **Scenes**: Backgrounds stored in `public/assets/scenes/`. Fallback chain: Room `backgroundUrl` -> Quest `backgroundUrl` -> `roomId.png`.

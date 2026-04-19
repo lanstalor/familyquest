@@ -45,7 +45,7 @@ const SCENES = [
   },
   {
     id: 'room-puzzle',
-    prompt: `${STYLE} Scene: an old rope bridge spanning a deep misty green ravine, the bridge made of frayed ropes and three prominent worn wooden planks each with a letter carved into it (S, T, R), morning mist rising from the ravine below, ferns clinging to the stone walls on each side.`,
+    prompt: `${STYLE} Scene: an old rope bridge spanning a deep misty green ravine, the bridge made of frayed ropes and four prominent worn wooden planks each with a letter carved into it (T, R, U, E), morning mist rising from the ravine below, ferns clinging to the stone walls on each side.`,
   },
   {
     id: 'room-goblin',
@@ -155,11 +155,11 @@ async function generateImage(scene) {
       Authorization: `Bearer ${OPENAI_KEY}`,
     },
     body: JSON.stringify({
-      model: 'gpt-image-1',
+      model: 'gpt-image-1.5',
       prompt: scene.prompt,
       n: 1,
       size: '1024x1024',
-      quality: 'medium',
+      quality: 'high',
     }),
   });
 
@@ -170,8 +170,16 @@ async function generateImage(scene) {
 
   const data = await res.json();
   const b64 = data.data?.[0]?.b64_json;
-  if (!b64) throw new Error('No image data in response');
-  return Buffer.from(b64, 'base64');
+  if (b64) return Buffer.from(b64, 'base64');
+  
+  const url = data.data?.[0]?.url;
+  if (url) {
+    const imgRes = await fetch(url);
+    const buf = await imgRes.arrayBuffer();
+    return Buffer.from(buf);
+  }
+
+  throw new Error('No image data or URL in response');
 }
 
 async function main() {

@@ -153,7 +153,7 @@ export const TEACUP_DRAGON: AdventureScript = {
         'room-puzzle',
         'magic-sense',
         hasMageOrBard,
-        'The Whispering Bridge hangs over a deep green ravine. Three planks — S, T, R — sway gently. Your magical senses catch something: the bridge is humming a word underneath all that wind noise.',
+        'The Whispering Bridge hangs over a deep green ravine. Four planks — T, R, U, E — sway gently. Your magical senses catch something: the bridge is humming a word underneath all that wind noise.',
         [
           {
             id: 'c1',
@@ -183,9 +183,9 @@ export const TEACUP_DRAGON: AdventureScript = {
           },
         ],
         {
-          hint: 'Which three-letter word can you spell from S, T, and R that means "correct"?',
+          hint: 'Which four-letter word can you spell from T, R, U, E that means "correct"?',
           activity:
-            'Write S, T, and R on three small pieces of paper. Everyone tries to arrange them into a word — no talking, only pointing.',
+            'Write T, R, U, E on four small pieces of paper. Everyone tries to arrange them into a word — no talking, only pointing.',
           activityKind: 'puzzle',
           plotPurpose:
             'The party must think together to cross the bridge — a test of cooperation under pressure.',
@@ -197,7 +197,7 @@ export const TEACUP_DRAGON: AdventureScript = {
         'room-puzzle',
         'default',
         always,
-        'The Whispering Bridge stretches over a deep ravine. Three worn planks hang from the ropes — each carved with a letter: S, T, R. The wind hums, almost like a word trying to get out.',
+        'The Whispering Bridge stretches over a deep ravine. Four worn planks hang from the ropes — each carved with a letter: T, R, U, E. The wind hums, almost like a word trying to get out.',
         [
           {
             id: 'c1',
@@ -214,14 +214,14 @@ export const TEACUP_DRAGON: AdventureScript = {
           },
           {
             id: 'c2',
-            label: 'Cross all three planks carefully',
+            label: 'Cross all four planks carefully',
             stat: 'dex',
             requiresRoll: true,
             target: 12,
             successText:
               'Careful and patient, you find your footing on each plank in turn and reach the other side.',
             failureText:
-              'The R plank is slippery. You slide and scrape your knee on the rope.',
+              'The E plank is slippery. You slide and scrape your knee on the rope.',
             consequenceHp: 1,
             advancesQuest: true,
           },
@@ -229,7 +229,7 @@ export const TEACUP_DRAGON: AdventureScript = {
         {
           hint: 'The wind hummed "trrrue"...',
           activity:
-            'Cut three small paper planks and label them S, T, R. Arrange them on the board and work out the right word together.',
+            'Cut four small paper planks and label them T, R, U, E. Arrange them on the board and work out the right word together.',
           activityKind: 'puzzle',
           plotPurpose:
             'The party must think together to cross the bridge — a test of cooperation under pressure.',

@@ -53,10 +53,11 @@ const ROOMS_SHORT: Room[] = [
     type: 'puzzle',
     emoji: '🌉',
     description:
-      'An old rope bridge with three worn planks. Each plank has a letter carved into it: S, T, R.',
+      'An old rope bridge with four worn planks. Each plank has a letter carved into it: T, R, U, E.',
     suggestedStat: 'int',
     target: 12,
     npcAvatarUrl: '/assets/characters/squirrel.png',
+    backgroundUrl: '/assets/scenes/enchanted-forest.png',
   },
   {
     id: 'room-goblin',

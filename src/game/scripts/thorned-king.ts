@@ -199,7 +199,7 @@ export const THORNED_KING: AdventureScript = {
         'room-puzzle',
         'default',
         always,
-        'The Whispering Bridge hangs over a deep ravine. Three worn planks — S, T, R — sway in the wind. The wind hums a secret word.',
+        'The Whispering Bridge hangs over a deep ravine. Four worn planks — T, R, U, E — sway in the wind. The wind hums a secret word.',
         [
           {
             id: 'c1',
@@ -224,7 +224,7 @@ export const THORNED_KING: AdventureScript = {
             advancesQuest: true,
           },
         ],
-        { activityKind: 'puzzle', activity: 'Find all the words you can make with S, T, R.' }
+        { activityKind: 'puzzle', activity: 'Find all the words you can make with T, R, U, E.' }
       ),
     ],
 

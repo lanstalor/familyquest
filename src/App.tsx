@@ -470,6 +470,7 @@ export default function App() {
               {room && (
                 <SceneView
                   settings={state.settings}
+                  quest={state.quest}
                   room={room}
                   scene={state.currentScene}
                   loading={loadingScene}

@@ -15,6 +15,7 @@ import { DiceRoller } from './DiceRoller';
 
 interface Props {
   settings: Settings;
+  quest: Quest;
   room: Room;
   scene: Scene | null;
   loading: boolean;
@@ -50,6 +51,7 @@ const KIND_LABEL: Record<NonNullable<Scene['activityKind']>, string> = {
 
 export function SceneView({
   settings,
+  quest,
   room,
   scene,
   loading,
@@ -118,7 +120,7 @@ export function SceneView({
         )}
       </div>
 
-      <SceneBanner room={room} />
+      <SceneBanner room={room} quest={quest} />
 
       <div className="mt-6 min-h-[8rem]">
         {loading && (
@@ -353,12 +355,12 @@ export function SceneView({
   );
 }
 
-function SceneBanner({ room }: { room: Room }) {
+function SceneBanner({ room, quest }: { room: Room; quest: Quest }) {
   const [visible, setVisible] = useState(true);
 
   if (!visible) return null;
 
-  const src = room.backgroundUrl || `/assets/scenes/${room.id}.png`;
+  const src = room.backgroundUrl || quest.backgroundUrl || `/assets/scenes/${room.id}.png`;
 
   return (
     <div className="mt-4 -mx-5 sm:-mx-6 lg:-mx-8 border-y-4 border-ink bg-bg-900 flex justify-center overflow-hidden shadow-inner">

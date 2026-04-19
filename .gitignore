@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.env.local
+.vscode
+.DS_Store
+*.log
+assets/collector_env
+.playwright-mcp/
+test-anthropic*.js

@@ -416,8 +416,8 @@ export default function App() {
         : `Room ${progress.current}/${progress.total}`;
   const nextButtonLabel = state.outcome
     ? state.outcome.advancesRoom
-      ? '▶ NEXT SCENE'
-      : '▶ NEXT TURN'
+      ? '▶ NEXT ROOM'
+      : '▶ NEXT HERO'
     : '▶ NEXT SCENE';
 
   return (

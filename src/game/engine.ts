@@ -563,13 +563,21 @@ export function resolveChoice(
     );
   }
 
-  // Room advancement is handled by the "Next Scene" button (see App),
-  // not here — so we don't skip rooms on choices that set advancesQuest.
+  // Room advancement:
+  // - Combat: Monster must be at 0 HP
+  // - Puzzle: Must succeed the roll
+  // - Story/Rest: Usually advances on success, or if explicitly marked
   const quest = state.quest;
   const nextIndex = (idx + 1) % players.length;
-  const advancesRoom = combatActive
-    ? !!encounter && encounter.currentHp <= 0
-    : choice.advancesQuest ?? success;
+  
+  let advancesRoom = false;
+  if (combatActive) {
+    advancesRoom = !!encounter && encounter.currentHp <= 0;
+  } else if (room?.type === 'puzzle' || room?.type === 'boss') {
+    advancesRoom = success;
+  } else {
+    advancesRoom = choice.advancesQuest ?? success;
+  }
 
   const nextState: GameState = {
     ...state,

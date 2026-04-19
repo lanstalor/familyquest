@@ -200,6 +200,7 @@ Palette key: `bg-900` (navy), `ink` (cream), `coin` (gold), `hp` (red), `quest-g
 
 ---
 
-## One-line mental model
-
-> localStorage-backed phase state machine, rendered in 8-bit chrome, driven by pre-authored scene variants with an AI deviation escape hatch, graceful demo-mode fallback throughout.
+## Current System Rules
+- **Strict Progression**: Puzzles and Combat rooms MUST be solved/defeated to advance. Failure rotates the turn to the next hero to try again.
+- **Visuals**: Full 1024x1024 background support via `backgroundUrl`. Layout uses a "Cinematic Letterbox" format (max 60vh) to ensure zero cropping of artwork.
+- **Narrator**: Native transparent `gpt-image-1.5` assets for items and monsters.

@@ -209,8 +209,8 @@ export function SceneView({
                 )}
                 <div className="font-pixel text-xl italic text-ink-muted mt-4">
                   {outcome.advancesRoom
-                    ? 'Tap the big bottom button when your table is ready for the next room.'
-                    : 'This room is still active. Tap the big bottom button for the next hero turn.'}
+                    ? 'Challenge complete! Tap the button below to move to the NEXT ROOM.'
+                    : 'The challenge remains! Tap the button below to pass to the NEXT HERO.'}
                 </div>
               </div>
               </div>
@@ -354,7 +354,6 @@ export function SceneView({
 }
 
 function SceneBanner({ room }: { room: Room }) {
-  const imgRef = useRef<HTMLImageElement>(null);
   const [visible, setVisible] = useState(true);
 
   if (!visible) return null;
@@ -362,14 +361,12 @@ function SceneBanner({ room }: { room: Room }) {
   const src = room.backgroundUrl || `/assets/scenes/${room.id}.png`;
 
   return (
-    <div className="mt-4 -mx-5 sm:-mx-6 lg:-mx-8 overflow-hidden" style={{ maxHeight: '220px' }}>
+    <div className="mt-4 -mx-5 sm:-mx-6 lg:-mx-8 border-y-4 border-ink bg-bg-900 flex justify-center overflow-hidden shadow-inner">
       <img
-        ref={imgRef}
         src={src}
         alt=""
         onError={() => setVisible(false)}
-        className="w-full object-cover object-center image-pixelated"
-        style={{ imageRendering: 'pixelated', maxHeight: '220px' }}
+        className="max-h-[50vh] sm:max-h-[60vh] w-auto image-pixelated object-contain"
       />
     </div>
   );

@@ -1,50 +1,38 @@
-# Family Quest Board
+# Family Quest Board ⚔️🛡️
 
-A single-page co-op RPG companion app for families. The physical side is a paper board with printable room tiles and tokens; this app is the narrator, rules helper, and state tracker.
+A retro 8-bit co-op RPG narrator designed for family game night. This app acts as the "Dungeon Master" for a physical board game, handling the story, combat math, and atmosphere.
 
-**2–4 players · iPad friendly · no login · no database · localStorage only.**
+## 🚀 Current Status (April 2026)
+The project is currently in **Phase 2: The Visual Awakening**. We have moved beyond placeholders into a fully realized 8-bit aesthetic.
 
-## Getting started
+### Key Features
+- **Authoritative Narrator**: Powered by `claude-haiku-4-5-20251001` via a secure server-side proxy.
+- **Hero System**: Custom 8-bit sprites for Ben (6) and Myla (4) across all classes (Warrior, Mage, Ranger, Bard).
+- **Pro Asset Library**: Sliced and optimized sprite-sheets for NPCs (Druids, Knights, Merchants) and Monsters (Shadow-Stalkers, Golems, Slimes).
+- **Native Transparency**: High-quality items and icons generated using `gpt-image-1.5` with true alpha-channel PNG support.
+- **Dynamic Audio**: Context-aware soundtrack that shifts between cozy tavern tunes and high-stakes boss themes.
+- **Three Core Quests**:
+    1. *The Teacup Dragon* (Short)
+    2. *The Whispering Woods* (Medium)
+    3. *The Thorned King* (Long - 12 Rooms)
 
-```bash
-npm install
-npm run dev
-```
+## 🛠️ Technical Stack
+- **Frontend**: React 18, TypeScript 5, Tailwind CSS 3.
+- **Backend**: Vite-based Node.js proxy for secure Anthropic Messages API calls.
+- **Art Pipeline**: Python (Pillow) for automated quadrant slicing and asset normalization.
 
-Open on the same tablet you play on. Tap the fullscreen icon in the top bar for a distraction-free iPad experience.
+## 🏃 How to Run
+1. Ensure your `.env` has a valid `VITE_ANTHROPIC_API_KEY`.
+2. Install dependencies: `npm install`
+3. Launch the game: `npm run dev -- --host`
+4. Access via `http://localhost:5176` (or your LAN IP on iPad).
 
-## Demo mode vs. AI mode
+## 🗺️ Roadmap
+- [x] Integrate handcrafted character quadrants.
+- [x] Implement native transparent item icons.
+- [x] Build server-side proxy for API stability.
+- [ ] Add "Save/Load" slots for multiple active quests.
+- [ ] Implement a "Bestiary" viewer to see all encountered monsters.
 
-Without an API key the app runs in **demo mode** using a seeded set of scenes — fully playable. To enable live AI narration, copy `.env.example` to `.env` and fill in **one** provider:
-
-- `VITE_AI_PROVIDER=openai` + `VITE_OPENAI_API_KEY`
-- `VITE_AI_PROVIDER=anthropic` + `VITE_ANTHROPIC_API_KEY`
-- `VITE_AI_PROVIDER=gemini` + `VITE_GEMINI_API_KEY`
-
-You can also set the provider/key in **Settings** inside the app — it will be saved to localStorage.
-
-All AI responses are returned in a strict JSON schema that is validated client-side. Invalid responses fall back to a seeded scene so play never stalls.
-
-## Playing
-
-1. **Setup** — enter player names, pick classes, choose the 45-minute or 90-minute adventure, toggle Kids Mode if you want softer difficulty and shorter text.
-2. **Print** the room tiles and cards (File → Print). Deal them face-down or stack by deck.
-3. **Play** — each turn the app draws a room, narrates the scene, and offers 2–3 choices. Some choices require a d20 roll plus a stat bonus vs. a target number.
-4. **Photo Artifact** — upload a photo of a drawing or craft your kid made and the app turns it into a one-of-a-kind in-game item.
-5. **Craft Prompts** — the app suggests little paper crafts or drawings for kids to make between scenes.
-
-## Tech
-
-Vite + React + TypeScript + Tailwind. All state in `localStorage`. Print stylesheet included.
-
-## File layout
-
-```
-src/
-  ai/           provider abstraction + mock scenes
-  game/         pure engine, classes, adventures
-  components/   UI
-  types.ts      game types
-  schema.ts     AI response validator
-  storage.ts    localStorage helpers
-```
+---
+*Created with love for Ben and Myla.*

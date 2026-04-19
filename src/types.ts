@@ -85,6 +85,7 @@ export interface Room {
   monster?: Monster;
   possibleLoot?: Item[];
   npcAvatarUrl?: string;
+  backgroundUrl?: string;
 }
 
 export interface Choice {
@@ -131,6 +132,7 @@ export interface Quest {
   completed: boolean;
   narrativeSpine?: string;
   plotBeats?: Record<string, string>;
+  backgroundUrl?: string;
 }
 
 export interface LogEntry {

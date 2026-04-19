@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import type {
   Choice,
   MonsterEncounter,
@@ -117,6 +117,8 @@ export function SceneView({
           <span className="tag kind-move">KIDS</span>
         )}
       </div>
+
+      <SceneBanner room={room} />
 
       <div className="mt-6 min-h-[8rem]">
         {loading && (
@@ -347,6 +349,28 @@ export function SceneView({
           onSubmit={onCustomAction}
         />
       )}
+    </div>
+  );
+}
+
+function SceneBanner({ room }: { room: Room }) {
+  const imgRef = useRef<HTMLImageElement>(null);
+  const [visible, setVisible] = useState(true);
+
+  if (!visible) return null;
+
+  const src = room.backgroundUrl || `/assets/scenes/${room.id}.png`;
+
+  return (
+    <div className="mt-4 -mx-5 sm:-mx-6 lg:-mx-8 overflow-hidden" style={{ maxHeight: '220px' }}>
+      <img
+        ref={imgRef}
+        src={src}
+        alt=""
+        onError={() => setVisible(false)}
+        className="w-full object-cover object-center image-pixelated"
+        style={{ imageRendering: 'pixelated', maxHeight: '220px' }}
+      />
     </div>
   );
 }

@@ -31,6 +31,10 @@ const ITEM_POTION = item('item-potion', 'Health Potion', 'A stoppered vial of sh
 const ITEM_BOOTS = item('item-boots', 'Aero-Boots', 'Boots so light they practically float.', 'artifact', { effect: '+1 DEX per room', bonus: { dex: 1 } });
 const ITEM_GAUNTLET = item('item-gauntlet', 'Iron Gauntlet', 'Heavy, dependable, leaves a mark.', 'artifact', { effect: '+1 STR per room', bonus: { str: 1 } });
 const ITEM_SPECTACLES = item('item-spectacles', "Sage's Spectacles", 'Thick lenses that show the hidden shapes of things.', 'artifact', { effect: '+1 INT per room', bonus: { int: 1 } });
+const ITEM_SUNSTONE = item('item-sunstone', 'Sun-Stone', 'A warm, glowing gem that hums with sunlight.', 'artifact', { effect: '+1 CHA per room', bonus: { cha: 1 } });
+const ITEM_WHISTLE = item('item-whistle', 'Silver Whistle', 'Calls for help from the forest friends.', 'artifact', { effect: 'Once per quest: +5 to one roll' });
+const ITEM_DRAGON_SHIELD = item('item-dragon-glass-shield', 'Dragon-Glass Shield', 'Translucent and strong as mountain-stone.', 'armor', { effect: 'Ignore 1 damage every turn' });
+const ITEM_EMERALD_SEED = item('item-emerald-seed', 'Emerald Heart Seed', 'A seed that pulses with the life of the woods.', 'key');
 
 const ROOMS_SHORT: Room[] = [
   {
@@ -112,15 +116,55 @@ const ROOMS_SHORT: Room[] = [
       '/assets/characters/dragon-small.png'
     ),
     possibleLoot: [
-      item('loot-dragon-scale', 'Warm Dragon Scale', 'Faintly steaming.', 'artifact', {
-        effect: 'Once per quest: ignore 2 damage',
-      }),
+      ITEM_DRAGON_SHIELD,
       item('loot-gold-pile', 'Pile of Gold', 'A small, but real, pile of gold.', 'loot', {
         goldValue: 20,
       }),
     ],
   },
 ];
+
+const ROOM_RATTLED_HOLLOW: Room = {
+  id: 'room-rattled-hollow',
+  name: 'Rattled Hollow',
+  type: 'combat',
+  emoji: '💀',
+  description: 'Two chattering skeletons emerge from a mossy hollow, their bones rattling with each step.',
+  suggestedStat: 'str',
+  target: 12,
+  monster: monster(
+    'rattlebones',
+    'Rattlebones',
+    'Old bones, old grudges, and a surprising amount of energy.',
+    10,
+    2,
+    11,
+    6,
+    '/assets/characters/rattlebones1.png'
+  ),
+  possibleLoot: [ITEM_GAUNTLET, ITEM_BOOTS],
+};
+
+const ROOM_STONE_PASS: Room = {
+  id: 'room-stone-pass',
+  name: 'The Stone Pass',
+  type: 'combat',
+  emoji: '🏔️',
+  description: 'A heavy stone golem steps out from the mountain-side, blocking the narrow ledge.',
+  suggestedStat: 'str',
+  target: 13,
+  monster: monster(
+    'stone-golem',
+    'Stone Golem',
+    'Hard as iron and slow as a mountain, but its hits are heavy.',
+    16,
+    3,
+    14,
+    10,
+    '/assets/characters/stone-golem.png'
+  ),
+  possibleLoot: [ITEM_SUNSTONE],
+};
 
 const ROOMS_LONG: Room[] = [
   ROOMS_SHORT[0],
@@ -136,6 +180,26 @@ const ROOMS_LONG: Room[] = [
     npcAvatarUrl: '/assets/characters/merchant.png',
     possibleLoot: [ITEM_SPECTACLES],
   },
+  {
+    id: 'room-outpost',
+    name: 'The Valley Outpost',
+    type: 'combat',
+    emoji: '🛡️',
+    description: 'A fortified wall blocks the road. The Guard Captain stands firm while a skeleton archer aims from the battlements.',
+    suggestedStat: 'cha',
+    target: 14,
+    npcAvatarUrl: '/assets/characters/guard-captain.png',
+    monster: monster(
+      'skeleton-archer',
+      'Skeleton Archer',
+      'Quick, bony, and surprisingly good with a bow.',
+      12,
+      2,
+      12,
+      8,
+      '/assets/characters/skeleton-archer.png'
+    ),
+  },
   ROOM_RATTLED_HOLLOW,
   {
     id: 'room-rest1',
@@ -147,6 +211,7 @@ const ROOMS_LONG: Room[] = [
     npcAvatarUrl: '/assets/characters/npc-bartender.png',
   },
   ROOMS_SHORT[1],
+  ROOM_STONE_PASS,
   {
     id: 'room-mushrooms',
     name: 'The Mushroom Choir',
@@ -156,6 +221,17 @@ const ROOMS_LONG: Room[] = [
       'A ring of mushrooms glows in turn, humming a melody. Repeat the pattern.',
     suggestedStat: 'int',
     target: 12,
+    npcAvatarUrl: '/assets/characters/druid.png',
+  },
+  {
+    id: 'room-crystals',
+    name: 'The Crystal Cavern',
+    type: 'puzzle',
+    emoji: '💎',
+    description: 'Giant glowing crystals fill the cavern, pulsing with blue and purple light. A puzzle of light and shadow awaits.',
+    suggestedStat: 'int',
+    target: 14,
+    backgroundUrl: '/assets/scenes/crystal-caves.png',
   },
   ROOMS_SHORT[2],
   {
@@ -226,25 +302,25 @@ const ROOM_SLIME_CROSSING: Room = {
   possibleLoot: [ITEM_POTION],
 };
 
-const ROOM_RATTLED_HOLLOW: Room = {
-  id: 'room-rattled-hollow',
-  name: 'Rattled Hollow',
+const ROOM_SHADOW_WOODS: Room = {
+  id: 'room-shadow-woods',
+  name: 'Shadow Woods',
   type: 'combat',
-  emoji: '💀',
-  description: 'Two chattering skeletons emerge from a mossy hollow, their bones rattling with each step.',
-  suggestedStat: 'str',
-  target: 12,
+  emoji: '🌑',
+  description: 'The trees here are made of smoke and silence. A shadow-stalker leaps from the branches.',
+  suggestedStat: 'dex',
+  target: 13,
   monster: monster(
-    'rattlebones',
-    'Rattlebones',
-    'Old bones, old grudges, and a surprising amount of energy.',
-    10,
-    2,
-    11,
-    6,
-    '/assets/characters/rattlebones1.png'
+    'shadow-stalker',
+    'Shadow-Stalker',
+    'A lean, smoky cat that blends perfectly into the dark.',
+    12,
+    3,
+    12,
+    8,
+    '/assets/characters/shadow-stalker.png'
   ),
-  possibleLoot: [ITEM_GAUNTLET, ITEM_BOOTS],
+  possibleLoot: [ITEM_WHISTLE],
 };
 
 const ROOMS_MEDIUM: Room[] = [
@@ -256,7 +332,7 @@ const ROOMS_MEDIUM: Room[] = [
     description: 'A dusty path leads into the deep woods. A sign says: "Whisper if you want to be heard."',
     suggestedStat: 'cha',
     target: 10,
-    npcAvatarUrl: '/assets/characters/npc-knight.png',
+    npcAvatarUrl: '/assets/characters/elder-oak.png',
   },
   ROOM_SLIME_CROSSING,
   {
@@ -269,6 +345,7 @@ const ROOMS_MEDIUM: Room[] = [
     target: 12,
     npcAvatarUrl: '/assets/characters/owl.png',
   },
+  ROOM_SHADOW_WOODS,
   {
     id: 'room-spider',
     name: 'The Webbed Glen',
@@ -284,7 +361,8 @@ const ROOMS_MEDIUM: Room[] = [
       12,
       2,
       12,
-      5
+      5,
+      '/assets/characters/will-o-wisp.png' // Using wisp for spider for now as wisp is more "woodland"
     ),
   },
   {
@@ -333,6 +411,7 @@ const ROOMS_MEDIUM: Room[] = [
       15,
       '/assets/characters/ogre.png'
     ),
+    possibleLoot: [ITEM_EMERALD_SEED],
   },
 ];
 
@@ -376,6 +455,7 @@ export const ADVENTURES: Quest[] = [
     rooms: ROOMS_MEDIUM,
     currentRoomIndex: 0,
     completed: false,
+    backgroundUrl: '/assets/scenes/enchanted-forest.png',
   },
   {
     id: 'quest-long',

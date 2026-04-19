@@ -66,30 +66,45 @@ for src_name, dst_name in backgrounds.items():
     else:
         print(f'  ⚠   {src_name} not found')
 
-# ── 2. Slice character quad ────────────────────────────────────────────────────
+# ── 2. Slice character quads ───────────────────────────────────────────────────
 print('\n── Characters ──')
-char_quad = os.path.join(IMPORT_DIR, 'quad_blueslime_rattlebones1_rattlebones2_merchantman.PNG')
-if os.path.exists(char_quad):
-    slice_quad(char_quad, CHARS_DIR, [
-        'blue-slime.png',
-        'rattlebones1.png',
-        'rattlebones2.png',
-        'merchant.png',
-    ])
-else:
-    print('  ⚠   character quad not found')
+char_quads = [
+    ('quad_blueslime_rattlebones1_rattlebones2_merchantman.PNG', [
+        'blue-slime.png', 'rattlebones1.png', 'rattlebones2.png', 'merchant.png'
+    ]),
+    ('shadowstalker_oak_golem_wisps.PNG', [
+        'shadow-stalker.png', 'elder-oak.png', 'stone-golem.png', 'will-o-wisp.png'
+    ]),
+    ('quad_roster_fillers.PNG', [
+        'guard-captain.png', 'blacksmith.png', 'skeleton-archer.png', 'druid.png'
+    ]),
+]
 
-# ── 3. Slice items quad (remove white bg from jpg) ────────────────────────────
+for src_name, filenames in char_quads:
+    src = os.path.join(IMPORT_DIR, src_name)
+    if os.path.exists(src):
+        print(f'Processing {src_name}...')
+        slice_quad(src, CHARS_DIR, filenames)
+    else:
+        print(f'  ⚠   {src_name} not found')
+
+# ── 3. Slice items quads ───────────────────────────────────────────────────────
 print('\n── Items ──')
-items_quad = os.path.join(IMPORT_DIR, 'quad_items_potion_boots_gauntlet_glasses.jpg')
-if os.path.exists(items_quad):
-    slice_quad(items_quad, ITEMS_DIR, [
-        'item-potion.png',
-        'item-boots.png',
-        'item-gauntlet.png',
-        'item-spectacles.png',
-    ], remove_white=True)
-else:
-    print('  ⚠   items quad not found')
+item_quads = [
+    ('quad_items_potion_boots_gauntlet_glasses.jpg', [
+        'item-potion.png', 'item-boots.png', 'item-gauntlet.png', 'item-spectacles.png'
+    ], True),
+    ('quad_items_story.PNG', [
+        'item-sunstone.png', 'item-whistle.png', 'item-dragon-glass-shield.png', 'item-emerald-seed.png'
+    ], False),
+]
+
+for src_name, filenames, remove_white in item_quads:
+    src = os.path.join(IMPORT_DIR, src_name)
+    if os.path.exists(src):
+        print(f'Processing {src_name}...')
+        slice_quad(src, ITEMS_DIR, filenames, remove_white=remove_white)
+    else:
+        print(f'  ⚠   {src_name} not found')
 
 print('\nDone.')
